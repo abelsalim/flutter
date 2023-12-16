@@ -43,11 +43,11 @@ ajustaDiaMes(numero) {
   return numero;
 }
 
-imprimeData([int dia = 1, int mes = 1, int ano = 1970]) {
+void imprimeData([int dia = 1, int mes = 1, int ano = 1970]) {
   print('${ajustaDiaMes(dia)}/${ajustaDiaMes(mes)}/$ano');
 }
 
-saudarPessoa({String nome = 'Abel', int idade = 30}) {
+void saudarPessoa({String nome = 'Abel', int idade = 30}) {
   print('Olá $nome, nem parece que você tem $idade anos.');
 }
 
