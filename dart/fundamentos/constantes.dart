@@ -1,6 +1,8 @@
 import 'dart:io';
 
 main() {
+  // Constantes parte I
+
   // O ponto de exclamação serve para confirmar que o valor de entrada não será
   // nulo. Exemplo: String entrada = stdin.readLineSync()!;
 
@@ -25,4 +27,24 @@ main() {
   final area = PI * raio * raio;
 
   print('O valor de área é: ' + area.toString());
+
+  // Constantes parte II
+
+  // Ao adicionar uma lista como var eu posso posteriormente sobrescreve-la.
+  // Exemplo: var lista = ['Abel', 'Salim', 'Lucas', 'Samuel'];
+
+  // Ao adicionar uma lista como final eu posso apenas adicionar valores.
+  // Exemplo: final lista = ['Abel', 'Salim', 'Lucas', 'Samuel'];
+
+  // Ao adicionar uma lista como final e const eu não posso modifica-la.
+  // Exemplo: final lista = const ['Abel', 'Salim', 'Lucas', 'Samuel'];
+
+  // Ao adicionar uma lista como var e const eu não posso modifica-la, mas posso
+  // sobrescreve-la.
+  // Exemplo: final lista = const ['Abel', 'Salim', 'Lucas', 'Samuel'];
+
+  var lista = const ['Abel', 'Salim', 'Lucas', 'Samuel'];
+  lista = ['Banana', 'Mamão'];
+
+  print(lista);
 }
