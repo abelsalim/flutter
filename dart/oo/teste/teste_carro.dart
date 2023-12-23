@@ -1,7 +1,7 @@
 import '../modelo/carro.dart';
 
 String minimoMaximo(Carro carro) {
-  var msg = carro.velocidadeAtual! <= 0
+  var msg = carro.velocidadeAtual <= 0
       ? 'Velocidade mínima de ${carro.velocidadeAtual} atingida!'
       : 'Velocidade máxima de ${carro.velocidadeAtual} atingida';
 
@@ -9,7 +9,7 @@ String minimoMaximo(Carro carro) {
 }
 
 void main() {
-  Carro carro = Carro(velocidadeAtual: 0);
+  Carro carro = Carro(velocidadeMaxima: 100);
 
   while (!carro.estaNoLimite(acelerar: true)) {
     print('A velocidade atual é de ${carro.acelerar()}');

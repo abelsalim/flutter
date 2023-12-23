@@ -1,36 +1,49 @@
 class Carro {
-  int? velocidadeAtual;
+  int? _velocidadeAtual = 0;
   final int? velocidadeMaxima;
 
-  Carro({this.velocidadeAtual = 0, this.velocidadeMaxima = 150});
+  Carro({this.velocidadeMaxima = 150});
+
+  // Método set para manipular o valor
+  void set velocidadeAtual(int novaVelocidade) {
+    bool deltaValido = (_velocidadeAtual! - novaVelocidade).abs() <= 50;
+    if (deltaValido && novaVelocidade >= 0) {
+      this._velocidadeAtual = novaVelocidade;
+    }
+  }
+
+  // Método get para capturar valor
+  int get velocidadeAtual {
+    return _velocidadeAtual!;
+  }
 
   String formataVelocidade() {
-    return '$velocidadeAtual km/h';
+    return '$_velocidadeAtual km/h';
   }
 
   bool estaNoLimite({acelerar = false, frear = false}) {
-    if (acelerar && velocidadeAtual! >= velocidadeMaxima!) {
+    if (acelerar && _velocidadeAtual! >= velocidadeMaxima!) {
       return true;
-    } else if (frear && velocidadeAtual! <= 0) {
+    } else if (frear && _velocidadeAtual! <= 0) {
       return true;
     }
     return false;
   }
 
   dynamic acelerar() {
-    if (velocidadeAtual! + 5 >= velocidadeMaxima!) {
-      velocidadeAtual = velocidadeMaxima;
+    if (_velocidadeAtual! + 5 >= velocidadeMaxima!) {
+      _velocidadeAtual = velocidadeMaxima;
     } else {
-      velocidadeAtual = velocidadeAtual! + 5;
+      _velocidadeAtual = _velocidadeAtual! + 5;
     }
     return formataVelocidade();
   }
 
   dynamic frear() {
-    if (velocidadeAtual! - 5 <= 0) {
-      velocidadeAtual = 0;
+    if (_velocidadeAtual! - 5 <= 0) {
+      _velocidadeAtual = 0;
     } else {
-      velocidadeAtual = velocidadeAtual! - 5;
+      _velocidadeAtual = _velocidadeAtual! - 5;
     }
     return formataVelocidade();
   }
