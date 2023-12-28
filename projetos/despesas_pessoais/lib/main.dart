@@ -14,6 +14,9 @@ class ExpenseApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: 't1',
@@ -51,7 +54,6 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const Column(
@@ -106,17 +108,56 @@ class MyHomePage extends StatelessWidget {
                                     color: Colors.black87),
                               ),
                               Text(
-                                DateFormat('dd/MM/y - H:m:ss').format(tr.date),
+                                DateFormat('dd/MM/y - H:m').format(tr.date),
                                 style: const TextStyle(
                                   color: Colors.black54,
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ))
                 .toList(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Card(
+              elevation: 5,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                      labelText: 'Descrição sa despesa',
+                    ),
+                  ),
+                  TextField(
+                    controller: valueController,
+                    decoration: const InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        child: const Text('Nova Transação'),
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all(
+                            Color.fromRGBO(191, 77, 115, 1),
+                          ),
+                        ),
+                        onPressed: () {
+                          print(titleController.text);
+                          print(valueController.text);
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           )
         ],
       ),
