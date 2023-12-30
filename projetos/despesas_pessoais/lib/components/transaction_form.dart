@@ -30,12 +30,12 @@ class TransactionForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  child: const Text('Nova Transação'),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(
-                      Color.fromRGBO(191, 77, 115, 1),
+                      const Color.fromRGBO(191, 77, 115, 1),
                     ),
                   ),
+                  child: const Text('Nova Transação'),
                   onPressed: () {
                     print(titleController.text);
                     print(valueController.text);
