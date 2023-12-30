@@ -27,6 +27,12 @@ class MyHomePage extends StatelessWidget {
             color: Colors.black87,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
       ),
       body: const SingleChildScrollView(
         child: Column(
@@ -48,6 +54,13 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black87,
+        backgroundColor: Colors.pink[50],
+        child: const Icon(Icons.add_circle_outlined),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
