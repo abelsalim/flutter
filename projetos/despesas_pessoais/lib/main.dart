@@ -1,5 +1,8 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:despesas_pessoais/components/transaction_user.dart';
+import 'package:despesas_pessoais/models/tansaction.dart';
+import 'package:despesas_pessoais/components/transaction_list.dart';
+import 'package:despesas_pessoais/components/transaction_form.dart';
 
 void main() => runApp(const ExpenseApp());
 
@@ -12,8 +15,56 @@ class ExpenseApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Internet',
+      value: 84.99,
+      date: DateTime(2023, 1, 01, 15, 58, 00),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de Água',
+      value: 59.99,
+      date: DateTime(2023, 12, 12, 18, 35, 50),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Conta de luz',
+      value: 287.47,
+      date: DateTime(2023, 12, 24, 23, 40, 35),
+    ),
+  ];
+
+  _openTransactionForm(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return TransactionForm(onSubmit: _addTransaction);
+      },
+    );
+  }
+
+  _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +80,16 @@ class MyHomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _openTransactionForm(context),
             icon: const Icon(Icons.add),
           )
         ],
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -50,16 +101,15 @@ class MyHomePage extends StatelessWidget {
                 ),
               ],
             ),
-            TransactionUser(),
+            TransactionList(transactions: _transactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        foregroundColor: Colors.black87,
-        backgroundColor: Colors.pink[50],
-        child: const Icon(Icons.add_circle_outlined),
-        onPressed: () {},
-      ),
+          foregroundColor: Colors.black87,
+          backgroundColor: Colors.pink[50],
+          child: const Icon(Icons.add_circle_outlined),
+          onPressed: () => _openTransactionForm(context)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
