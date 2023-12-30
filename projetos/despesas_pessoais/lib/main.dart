@@ -28,23 +28,25 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                child: Card(
-                  elevation: 5,
-                  child: Text('Gráfico'),
+      body: const SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  child: Card(
+                    elevation: 5,
+                    child: Text('Gráfico'),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          TransactionUser(),
-        ],
+              ],
+            ),
+            TransactionUser(),
+          ],
+        ),
       ),
     );
   }
