@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
-  _openTransactionForm(BuildContext context) {
+  _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () => _openTransactionForm(context),
+            onPressed: () => _openTransactionFormModal(context),
             icon: const Icon(Icons.add),
           )
         ],
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
           foregroundColor: Colors.black87,
           backgroundColor: Colors.pink[50],
           child: const Icon(Icons.add_circle_outlined),
-          onPressed: () => _openTransactionForm(context)),
+          onPressed: () => _openTransactionFormModal(context)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
